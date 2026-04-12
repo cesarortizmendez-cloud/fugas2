@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- 
+      Configuración básica del documento.
+      - UTF-8 permite usar tildes, ñ y caracteres especiales.
+      - viewport hace que el sitio se vea bien en celulares.
+    -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 
+      Título que aparecerá en la pestaña del navegador.
+      También ayuda al SEO básico.
+    -->
+    <title>Fugadetec | Precisión en fugas</title>
+
+    <!-- 
+      Descripción breve del sitio.
+      Esto ayuda a buscadores y a compartir la página.
+    -->
+    <meta
+      name="description"
+      content="Fugadetec: detección precisa de fugas, arquitectura y construcción con una propuesta visual moderna, técnica y responsiva."
+    />
+
+    <!-- 
+      Vinculamos el archivo CSS principal.
+      Ojo: como index.html está en la raíz, la ruta al CSS es ./css/styles.css
+    -->
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+
+  <body>
+    <!-- 
+      =========================================================
+      HEADER / CABECERA
+      =========================================================
+      Esta es la barra superior del sitio.
+      Contiene:
+      - logo
+      - nombre de la marca
+      - menú principal
+      - botón destacado de contacto
+    -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <!-- 
+          Marca principal.
+          Al hacer clic, vuelve al inicio de la página.
+        -->
+        <a href="#inicio" class="brand">
+          <span class="brand-logo">
+            <img
+              src="./images/brand/logo-circular-rojo.jpg"
+              alt="Logo circular de Fugadetec"
+            />
+          </span>
+
+          <span class="brand-text">
+            <strong>Fugadetec</strong>
+            <small>Precisión en fugas</small>
+          </span>
+        </a>
+
+        <!-- 
+          Botón menú móvil.
+          Más adelante JavaScript lo abrirá/cerrará en pantallas pequeñas.
+        -->
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Abrir menú de navegación"
+          aria-expanded="false"
+        >
+          Menú
+        </button>
+
+        <!-- 
+          Navegación principal del sitio.
+          Usa anclas internas para moverse a secciones de la misma página.
+        -->
+        <nav class="main-nav">
+          <a href="#inicio">Inicio</a>
+          <a href="#deteccion">Detección</a>
+          <a href="#arquitectura">Arquitectura</a>
+          <a href="#construccion">Construcción</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+
+        <!-- 
+          Botón principal de llamada a la acción.
+          Por ahora lleva a la sección de contacto.
+        -->
+        <a href="#contacto" class="header-cta">Solicitar diagnóstico</a>
+      </div>
+    </header>
+
+    <!-- 
+      =========================================================
+      CONTENIDO PRINCIPAL
+      =========================================================
+      Todo el contenido central del sitio va dentro de <main>.
+    -->
+    <main>
+      <!-- 
+        =========================================================
+        HERO / PRIMERA PANTALLA
+        =========================================================
+        Esta sección debe contener la información más importante
+        que el usuario verá apenas abra la web.
+      -->
+      <section id="inicio" class="hero">
+        <!-- 
+          Capas decorativas.
+          Estas capas se usarán con CSS para:
+          - grilla técnica
+          - brillo azul
+          - brillo rojo
+          - línea scanner
+        -->
+        <div class="hero-grid"></div>
+        <div class="hero-grid-fade"></div>
+        <div class="hero-glow hero-glow-blue"></div>
+        <div class="hero-glow hero-glow-red"></div>
+        <div class="hero-scan-line"></div>
+
+        <div class="container hero-layout">
+          <!-- 
+            Columna izquierda del hero:
+            texto principal, sello, logo, descripción y botones.
+          -->
+          <div class="hero-content">
+            <!-- 
+              Pequeña etiqueta superior.
+              Sirve como sello visual técnico.
+            -->
+            <div class="hero-chip">
+              <span class="hero-chip-dot"></span>
+              <span>Tecnología aplicada en detección</span>
+            </div>
+
+            <!-- 
+              Bloque de identidad de marca.
+              Aquí se muestra el ícono circular rojo y el nombre.
+            -->
+            <div class="hero-brand">
+              <div class="hero-brand-logo">
+                <img
+                  src="./images/brand/logo-circular-rojo.jpg"
+                  alt="Ícono circular rojo de Fugadetec"
+                />
+              </div>
+
+              <div class="hero-brand-text">
+                <p>Fugadetec</p>
+                <span>Precisión en fugas</span>
+              </div>
+            </div>
+
+            <!-- 
+              Título principal.
+              Debe explicar con claridad el negocio principal.
+            -->
+            <h1 class="hero-title">
+              Detección precisa de fugas
+              <span>en todo tipo de cañerías</span>
+            </h1>
+
+            <!-- 
+              Texto descriptivo principal.
+              Resume la tecnología y la propuesta de valor.
+            -->
+            <p class="hero-description">
+              Mediante detector de fugas por ultrasonido, gas trazador H₂ y
+              escaneo con radar de banda ultraancha (UWB), localizamos con
+              precisión la línea afectada para reducir daño innecesario y apoyar
+              una solución más eficiente.
+            </p>
+
+            <!-- 
+              Grupo de botones del hero.
+              - El primero lleva a contacto
+              - El segundo baja a las líneas de negocio
+            -->
+            <div class="hero-actions">
+              <a href="#contacto" class="btn btn-primary">
+                Solicitar diagnóstico
+              </a>
+
+              <a href="#lineas-negocio" class="btn btn-secondary">
+                Ver líneas de negocio
+              </a>
+            </div>
+          </div>
+
+          <!-- 
+            Columna derecha del hero:
+            imagen principal y pequeña franja inferior con datos.
+          -->
+          <div class="hero-visual">
+            <div class="hero-card">
+              <!-- 
+                Etiqueta flotante sobre la imagen.
+              -->
+              <div class="hero-card-badge">Tecnología Fugadetec</div>
+
+              <!-- 
+                Imagen principal del hero.
+                Luego puedes reemplazar hero-principal.jpg por la foto que prefieras.
+              -->
+              <div class="hero-image-wrap">
+                <img
+                  src="./images/home/hero-principal.jpeg"
+                  alt="Tecnología de detección Fugadetec"
+                  class="hero-image"
+                />
+
+                <!-- 
+                  Capas internas para efecto scanner sobre la imagen.
+                  CSS animará estas capas.
+                -->
+                <div class="hero-image-scan-line"></div>
+                <div class="hero-image-scan-shimmer"></div>
+                <div class="hero-image-pulse"></div>
+              </div>
+
+              <!-- 
+                Franja inferior con datos rápidos.
+              -->
+              <div class="hero-card-info">
+                <div class="info-box">
+                  <span class="info-label">Sitio</span>
+                  <p>www.fugadetec.cl</p>
+                </div>
+
+                <div class="info-box">
+                  <span class="info-label">Contacto</span>
+                  <p>contacto@fugadetec.cl</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 
+        =========================================================
+        LÍNEAS DE NEGOCIO / BOTONES INFERIORES
+        =========================================================
+        Esta sección contiene los 3 botones inferiores que derivan
+        a sus respectivas galerías.
+      -->
+      <section id="lineas-negocio" class="business-links-section">
+        <div class="container">
+          <div class="business-links">
+            <!-- 
+              Botón azul: Detección de fugas
+            -->
+            <a href="#deteccion" class="business-card business-card-blue">
+              <span class="business-card-label">Línea de negocio</span>
+              <h3>Detección de fugas</h3>
+              <p>Lectura técnica, localización precisa y escaneo de entorno.</p>
+            </a>
+
+            <!-- 
+              Botón rojo: Arquitectura
+            -->
+            <a href="#arquitectura" class="business-card business-card-red">
+              <span class="business-card-label">Línea de negocio</span>
+              <h3>Arquitectura</h3>
+              <p>Proyectos, tramitación y desarrollo técnico profesional.</p>
+            </a>
+
+            <!-- 
+              Botón gris: Construcción
+            -->
+            <a href="#construccion" class="business-card business-card-gray">
+              <span class="business-card-label">Línea de negocio</span>
+              <h3>Construcción</h3>
+              <p>Obras, ejecución y soporte técnico con respaldo visual.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 
+        =========================================================
+        GALERÍA 1: DETECCIÓN DE FUGAS
+        =========================================================
+        Aquí JavaScript insertará dinámicamente el tren de imágenes.
+      -->
+      <section id="deteccion" class="gallery-section">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-chip section-chip-blue">Detección de fugas</span>
+            <h2>Detección de Fugas</h2>
+            <p>
+              Esta sección mostrará fotografías de trabajos y tecnología aplicada
+              a detección de fugas.
+            </p>
+          </div>
+
+          <!-- 
+            Contenedor vacío.
+            JavaScript lo llenará automáticamente con tarjetas de imágenes.
+          -->
+          <div class="image-rail" data-rail="deteccion"></div>
+        </div>
+      </section>
+
+      <!-- 
+        =========================================================
+        GALERÍA 2: ARQUITECTURA
+        =========================================================
+      -->
+      <section id="arquitectura" class="gallery-section">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-chip section-chip-red">Arquitectura</span>
+            <h2>Arquitectura</h2>
+            <p>
+              Esta sección mostrará referencias visuales, proyectos y material
+              gráfico asociado a la línea de arquitectura.
+            </p>
+          </div>
+
+          <div class="image-rail" data-rail="arquitectura"></div>
+        </div>
+      </section>
+
+      <!-- 
+        =========================================================
+        GALERÍA 3: CONSTRUCCIÓN
+        =========================================================
+      -->
+      <section id="construccion" class="gallery-section">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-chip section-chip-gray">Construcción</span>
+            <h2>Construcción</h2>
+            <p>
+              Esta sección mostrará fotografías de obra, ejecución y trabajos
+              vinculados a la línea de construcción.
+            </p>
+          </div>
+
+          <div class="image-rail" data-rail="construccion"></div>
+        </div>
+      </section>
+
+      <!-- 
+        =========================================================
+        CONTACTO
+        =========================================================
+        Mantendremos esta sección similar a la versión anterior,
+        pero agregando redes sociales.
+      -->
+      <section id="contacto" class="contact-section">
+        <div class="contact-glow contact-glow-blue"></div>
+        <div class="contact-glow contact-glow-red"></div>
+
+        <div class="container">
+          <div class="contact-card">
+            <!-- 
+              Columna izquierda: texto principal y botones.
+            -->
+            <div class="contact-content">
+              <span class="section-chip section-chip-red">Contacto directo</span>
+
+              <h2>¿Necesitas una evaluación?</h2>
+
+              <p>
+                Esta sección quedará como base de contacto principal. Más
+                adelante podrás ampliar esta parte con formulario, WhatsApp y
+                nuevas redes sociales.
+              </p>
+
+              <div class="contact-actions">
+                <a href="mailto:contacto@fugadetec.cl" class="btn btn-primary">
+                  contacto@fugadetec.cl
+                </a>
+
+                <a
+                  href="https://www.facebook.com/profile.php?id=61577380280096&sk=about"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="btn btn-secondary"
+                >
+                  Facebook
+                </a>
+
+                <!-- 
+                  Instagram quedará listo como placeholder.
+                  Luego reemplazarás el # por el link real.
+                -->
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="btn btn-secondary"
+                >
+                  Instagram
+                </a>
+              </div>
+            </div>
+
+            <!-- 
+              Columna derecha: datos de contacto.
+            -->
+            <div class="contact-data">
+              <div class="contact-box">
+                <span class="info-label">General</span>
+                <p>contacto@fugadetec.cl</p>
+              </div>
+
+              <div class="contact-box">
+                <span class="info-label">Comercial</span>
+                <p>juanpablo@fugadetec.cl</p>
+              </div>
+
+              <div class="contact-box">
+                <span class="info-label">Técnico</span>
+                <p>johans@fugadetec.cl</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 
+    =========================================================
+     FOOTER / PIE DE PÁGINA
+     ========================================================= -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="footer-copy">
+      <span>Fugadetec · Precisión en fugas</span>
+      <span class="footer-separator">•</span>
+      <span>
+        Desarrollado por
+        <a
+          href="https://cv-cesarortiz.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-link"
+        >
+          Dr. César Ortiz Méndez
+        </a>
+      </span>
+    </p>
+  </div>
+</footer>
+
+<!-- Vinculamos el archivo JavaScript principal -->
+<script src="./js/main.js"></script>
+</body>
+</html>

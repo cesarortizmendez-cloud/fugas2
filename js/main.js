@@ -1,0 +1,378 @@
+/* =========================================================
+   DATOS DEL SITIO
+   =========================================================
+   Aquí guardamos la información de las tres líneas de negocio.
+   La gran ventaja de este sistema es que, en el futuro, para
+   agregar o quitar fotos, solo tendrás que editar estas listas.
+*/
+const businessLines = {
+  deteccion: {
+    title: "Detección de fugas",
+    images: [
+      "./images/deteccion/deteccion-01.jpeg",
+      "./images/deteccion/deteccion-02.jpeg",
+      "./images/deteccion/deteccion-03.jpeg",
+    ],
+  },
+
+  arquitectura: {
+    title: "Arquitectura",
+    images: [
+      "./images/arquitectura/arquitectura-01.jpg",
+      "./images/arquitectura/arquitectura-02.jpg",
+      "./images/arquitectura/arquitectura-03.jpg",
+    ],
+  },
+
+  construccion: {
+    title: "Construcción",
+    images: [
+      "./images/construccion/construccion-01.jpg",
+      "./images/construccion/construccion-02.jpg",
+      "./images/construccion/construccion-03.jpg",
+    ],
+  },
+};
+
+/* =========================================================
+   FUNCIÓN: crear tarjeta de imagen
+   =========================================================
+   Esta función recibe:
+   - la ruta de una imagen
+   - el título de la línea de negocio
+   - el número de orden
+
+   Y devuelve una tarjeta HTML lista para insertarse en el tren.
+*/
+function createRailCard(imagePath, businessTitle, index) {
+  /*
+    Creamos el contenedor principal de la tarjeta.
+    Esta tarjeta usará las clases que ya definimos en CSS.
+  */
+  const card = document.createElement("article");
+  card.className = "rail-card";
+
+  /*
+    Creamos el contenedor de la imagen.
+    Esto ayuda a mantener la proporción visual de cada tarjeta.
+  */
+  const imageWrap = document.createElement("div");
+  imageWrap.className = "rail-card-image";
+
+  /*
+    Creamos la imagen real.
+    - src: ruta del archivo
+    - alt: texto alternativo descriptivo
+  */
+  const image = document.createElement("img");
+  image.src = imagePath;
+  image.alt = `${businessTitle} fotografía ${index + 1}`;
+
+  /*
+    Si una imagen no existe o está mal escrita,
+    evitamos que quede rota visualmente.
+    En ese caso, la escondemos y cambiamos el fondo.
+  */
+  image.addEventListener("error", () => {
+    image.style.display = "none";
+    imageWrap.style.background =
+      "linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))";
+  });
+
+  /*
+    Agregamos la imagen dentro de su contenedor.
+  */
+  imageWrap.appendChild(image);
+
+  /*
+    Creamos el pie de la tarjeta.
+    Aquí podemos poner texto breve para dar orden visual.
+  */
+  const footer = document.createElement("div");
+  footer.className = "rail-card-footer";
+
+  /*
+    Texto descriptivo simple.
+    Esto sirve para que cada imagen tenga contexto visual.
+  */
+  const footerText = document.createElement("p");
+  footerText.textContent = `${businessTitle} · Imagen ${index + 1}`;
+
+  footer.appendChild(footerText);
+
+  /*
+    Armamos la tarjeta completa.
+  */
+  card.appendChild(imageWrap);
+  card.appendChild(footer);
+
+  /*
+    Devolvemos la tarjeta ya construida.
+  */
+  return card;
+}
+
+/* =========================================================
+   FUNCIÓN: renderizar un tren de imágenes
+   =========================================================
+   Esta función:
+   - busca un contenedor por su atributo data-rail
+   - revisa si hay imágenes disponibles
+   - inserta las tarjetas en pantalla
+*/
+function renderImageRail(railName) {
+  /*
+    Buscamos el contenedor HTML correspondiente.
+    Ejemplo:
+    <div class="image-rail" data-rail="deteccion"></div>
+  */
+  const railContainer = document.querySelector(`[data-rail="${railName}"]`);
+
+  /*
+    Si por alguna razón el contenedor no existe, salimos.
+  */
+  if (!railContainer) return;
+
+  /*
+    Buscamos la información de esa línea de negocio
+    dentro del objeto businessLines.
+  */
+  const businessData = businessLines[railName];
+
+  /*
+    Si no encontramos datos, mostramos un mensaje simple.
+  */
+  if (!businessData) {
+    railContainer.innerHTML = "<p>No hay imágenes disponibles.</p>";
+    return;
+  }
+
+  /*
+    Limpiamos el contenedor por seguridad.
+    Esto evita duplicados si la función se ejecuta más de una vez.
+  */
+  railContainer.innerHTML = "";
+
+  /*
+    Recorremos todas las imágenes de esa línea de negocio
+    y vamos creando una tarjeta por cada una.
+  */
+  businessData.images.forEach((imagePath, index) => {
+    const card = createRailCard(imagePath, businessData.title, index);
+    railContainer.appendChild(card);
+  });
+}
+
+/* =========================================================
+   FUNCIÓN: renderizar todos los trenes
+   =========================================================
+   Así no tenemos que llamar uno por uno manualmente.
+*/
+function renderAllRails() {
+  renderImageRail("deteccion");
+  renderImageRail("arquitectura");
+  renderImageRail("construccion");
+}
+
+/* =========================================================
+   MENÚ MÓVIL
+   =========================================================
+   Esta parte hace que el botón "Menú" abra y cierre
+   la navegación en pantallas pequeñas.
+*/
+function setupMobileMenu() {
+  /*
+    Buscamos el botón del menú y el bloque de navegación.
+  */
+  const menuButton = document.querySelector(".menu-toggle");
+  const nav = document.querySelector(".main-nav");
+
+  /*
+    Si alguno no existe, salimos para evitar errores.
+  */
+  if (!menuButton || !nav) return;
+
+  /*
+    Al hacer clic en el botón:
+    - alternamos la clase is-open
+    - actualizamos aria-expanded para accesibilidad
+  */
+  menuButton.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("is-open");
+    menuButton.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  /*
+    Además, si el usuario hace clic en un link del menú,
+    cerramos el menú automáticamente.
+    Esto mejora mucho la experiencia en celular.
+  */
+  const navLinks = nav.querySelectorAll("a");
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("is-open");
+      menuButton.setAttribute("aria-expanded", "false");
+    });
+  });
+}
+
+/* =========================================================
+   SCROLL SUAVE REFORZADO
+   =========================================================
+   Aunque CSS ya tiene scroll-behavior: smooth,
+   esta función nos permite controlar mejor la navegación
+   interna y descontar el espacio del header fijo.
+*/
+function setupSmoothAnchorOffset() {
+  /*
+    Seleccionamos todos los links internos que apunten
+    a una sección con "#algo".
+  */
+  const internalLinks = document.querySelectorAll('a[href^="#"]');
+
+  internalLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      /*
+        Extraemos el destino del link.
+      */
+      const targetId = link.getAttribute("href");
+
+      /*
+        Si el href es vacío o solo "#", no hacemos nada.
+      */
+      if (!targetId || targetId === "#") return;
+
+      /*
+        Buscamos el elemento de destino.
+      */
+      const targetElement = document.querySelector(targetId);
+
+      /*
+        Si no existe el destino, salimos.
+      */
+      if (!targetElement) return;
+
+      /*
+        Prevenimos el salto brusco por defecto del navegador.
+      */
+      event.preventDefault();
+
+      /*
+        Calculamos la posición final considerando
+        la altura del header fijo.
+      */
+      const header = document.querySelector(".site-header");
+      const headerHeight = header ? header.offsetHeight : 0;
+
+      /*
+        Distancia desde el top del documento
+        hasta el elemento destino.
+      */
+      const targetPosition =
+        targetElement.getBoundingClientRect().top + window.scrollY;
+
+      /*
+        Ajustamos la posición final para que la sección
+        no quede escondida detrás del header.
+      */
+      const finalPosition = targetPosition - headerHeight - 12;
+
+      /*
+        Hacemos el scroll suave.
+      */
+      window.scrollTo({
+        top: finalPosition,
+        behavior: "smooth",
+      });
+    });
+  });
+}
+
+/* =========================================================
+   EFECTO OPCIONAL: destacar tarjeta al entrar en viewport
+   =========================================================
+   Esto hace que las tarjetas de las galerías se sientan
+   más vivas al aparecer en pantalla.
+*/
+function setupRailRevealEffect() {
+  /*
+    Tomamos todas las tarjetas del tren.
+    Ojo: esto debe ejecutarse después de renderizar los trenes.
+  */
+  const cards = document.querySelectorAll(".rail-card");
+
+  /*
+    Si el navegador no soporta IntersectionObserver,
+    simplemente salimos y el sitio sigue funcionando.
+  */
+  if (!("IntersectionObserver" in window)) return;
+
+  /*
+    Creamos un observador para detectar cuándo una tarjeta
+    entra en la pantalla.
+  */
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        /*
+          Si la tarjeta entra al área visible,
+          le agregamos estilos en línea simples.
+        */
+        if (entry.isIntersecting) {
+          entry.target.style.transform = "translateY(0)";
+          entry.target.style.opacity = "1";
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.15,
+    }
+  );
+
+  /*
+    Estado inicial de las tarjetas antes de aparecer.
+  */
+  cards.forEach((card) => {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(16px)";
+    card.style.transition = "opacity 0.45s ease, transform 0.45s ease";
+    observer.observe(card);
+  });
+}
+
+/* =========================================================
+   INICIALIZACIÓN GENERAL DEL SITIO
+   =========================================================
+   Esta función arranca todo cuando el HTML ya terminó de cargar.
+*/
+function initSite() {
+  /*
+    1. Renderizamos todos los trenes de imágenes.
+  */
+  renderAllRails();
+
+  /*
+    2. Configuramos el menú móvil.
+  */
+  setupMobileMenu();
+
+  /*
+    3. Activamos el scroll suave con compensación del header.
+  */
+  setupSmoothAnchorOffset();
+
+  /*
+    4. Activamos el pequeño efecto de aparición en tarjetas.
+  */
+  setupRailRevealEffect();
+}
+
+/* =========================================================
+   EVENTO DOMContentLoaded
+   =========================================================
+   Esperamos a que el documento HTML cargue completamente
+   antes de ejecutar el JavaScript.
+*/
+document.addEventListener("DOMContentLoaded", initSite);
