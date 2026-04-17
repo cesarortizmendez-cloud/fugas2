@@ -1,34 +1,43 @@
 /* =========================================================
    DATOS DEL SITIO
    =========================================================
-   Actualizamos las rutas de las imágenes para que coincidan
-   con los archivos existentes en las carpetas.
+   Incorporamos todas las imágenes disponibles en las carpetas
+   de detección, arquitectura y construcción.
 */
 const businessLines = {
   deteccion: {
     title: "Detección de fugas",
     images: [
-      "./images/deteccion/detec-a.jpeg",
-      "./images/deteccion/detec-b.jpeg",
-      "./images/deteccion/detec-c.jpeg",
+      { src: "./images/deteccion/detec-a.jpeg", text: "Detección con ultrasonido" },
+      { src: "./images/deteccion/detec-b.jpeg", text: "Análisis de gas trazador" },
+      { src: "./images/deteccion/detec-c.jpeg", text: "Escaneo con radar UWB" },
+      { src: "./images/deteccion/detec-d.jpeg", text: "Cámara termográfica" },
+      { src: "./images/deteccion/detec-e.jpeg", text: "Cámara termográfica" },
+      { src: "./images/deteccion/detec-f.jpeg", text: "Localización de fugas subterráneas" },
+      { src: "./images/deteccion/detec-g.jpeg", text: "Escaner de muros y losas" },
     ],
   },
 
   arquitectura: {
     title: "Arquitectura",
     images: [
-      "./images/arquitectura/arq-a.jpeg",
-      "./images/arquitectura/arq-b.jpeg",
-      "./images/arquitectura/arq-c.jpeg",
+      { src: "./images/arquitectura/arq-a.jpeg", text: "Proyecto residencial moderno" },
+      { src: "./images/arquitectura/arq-b.jpeg", text: "Diseño de interiores minimalista" },
+      { src: "./images/arquitectura/arq-c.jpeg", text: "Edificio corporativo" },
+      { src: "./images/arquitectura/arq-d.jpeg", text: "Planificación urbana" },
+      { src: "./images/arquitectura/arq-e.jpeg", text: "Diseño sostenible" },
+      { src: "./images/arquitectura/arq-f.jpeg", text: "Restauración arquitectónica" },
+      { src: "./images/arquitectura/arq-g.jpeg", text: "Proyectos comerciales" },
     ],
   },
 
   construccion: {
     title: "Construcción",
     images: [
-      "./images/construccion/const-a.jpeg",
-      "./images/construccion/const-b.jpeg",
-      "./images/construccion/const-c.jpeg",
+      { src: "./images/construccion/const-a.jpeg", text: "Obra de infraestructura" },
+      { src: "./images/construccion/const-b.jpeg", text: "Construcción de viviendas" },
+      { src: "./images/construccion/const-c.jpeg", text: "Supervisión de proyectos" },
+      { src: "./images/construccion/const-d.jpeg", text: "Gestión de materiales" },
     ],
   },
 };
@@ -36,9 +45,11 @@ const businessLines = {
 /* =========================================================
    FUNCIÓN: crear tarjeta de imagen
    =========================================================
-   Restauramos la función original.
+   Ajustamos la función para usar los textos descriptivos.
 */
-function createRailCard(imagePath, businessTitle, index) {
+function createRailCard(imageData, businessTitle, index) {
+  const { src, text } = imageData;
+
   const card = document.createElement("article");
   card.className = "rail-card";
 
@@ -46,15 +57,15 @@ function createRailCard(imagePath, businessTitle, index) {
   imageWrap.className = "rail-card-image";
 
   const image = document.createElement("img");
-  image.src = imagePath;
-  image.alt = `${businessTitle} fotografía ${index + 1}`;
+  image.src = src;
+  image.alt = text || `${businessTitle} fotografía ${index + 1}`;
   imageWrap.appendChild(image);
 
   const footer = document.createElement("div");
   footer.className = "rail-card-footer";
 
   const footerText = document.createElement("p");
-  footerText.textContent = `${businessTitle} · Imagen ${index + 1}`;
+  footerText.textContent = text || `${businessTitle} · Imagen ${index + 1}`;
   footer.appendChild(footerText);
 
   card.appendChild(imageWrap);
