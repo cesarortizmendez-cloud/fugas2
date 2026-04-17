@@ -18,9 +18,8 @@ const businessLines = {
   arquitectura: {
     title: "Arquitectura",
     images: [
-      "./images/arquitectura/arquitectura-01.jpg",
-      "./images/arquitectura/arquitectura-02.jpg",
-      "./images/arquitectura/arquitectura-03.jpg",
+      "./images/arquitectura/arq-a.jpeg",
+      
     ],
   },
 

@@ -791,7 +791,8 @@ a {
    JavaScript la va a crear con esta estructura.
 */
 .rail-card {
-  min-width: 280px;
+  width: 600px; /* Ancho estándar para todas las tarjetas */
+  height: 500px; /* Alto estándar para todas las tarjetas */
   background: var(--bg-card);
   border: 1px solid var(--border-soft);
   border-radius: 1.8rem;
@@ -809,18 +810,20 @@ a {
 }
 
 .rail-card-image {
-  position: relative;
-  aspect-ratio: 4 / 5;
+  width: 100%;
+  height: 80%; /* La imagen ocupará el 80% de la tarjeta */
   overflow: hidden;
 }
 
 .rail-card-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Ajusta la imagen para llenar el espacio */
+  object-position: center; /* Centra la imagen dentro del contenedor */
 }
 
 .rail-card-footer {
+  height: 20%; /* El pie de la tarjeta ocupará el 20% restante */
   padding: 0.9rem 1rem 1rem;
   background: rgba(0, 0, 0, 0.22);
   border-top: 1px solid var(--border-soft);
