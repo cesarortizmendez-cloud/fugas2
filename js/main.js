@@ -19,7 +19,7 @@ const businessLines = {
     title: "Arquitectura",
     images: [
       "./images/arquitectura/arq-a.jpeg",
-      
+      "./images/arquitectura/arq-b.jpeg",
     ],
   },
 
