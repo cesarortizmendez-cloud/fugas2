@@ -24,6 +24,7 @@ const businessLines = {
       "./images/arquitectura/arq-d.jpeg",
       "./images/arquitectura/arq-e.jpeg",
       "./images/arquitectura/arq-f.jpeg",
+      "./images/arquitectura/arq-g.jpeg",
     ],
   },
 
