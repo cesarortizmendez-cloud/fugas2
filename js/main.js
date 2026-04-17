@@ -20,6 +20,10 @@ const businessLines = {
     images: [
       "./images/arquitectura/arq-a.jpeg",
       "./images/arquitectura/arq-b.jpeg",
+      "./images/arquitectura/arq-c.jpeg",
+      "./images/arquitectura/arq-d.jpeg",
+      "./images/arquitectura/arq-e.jpeg",
+      "./images/arquitectura/arq-f.jpeg",
     ],
   },
 
