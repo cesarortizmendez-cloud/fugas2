@@ -1,17 +1,16 @@
 /* =========================================================
    DATOS DEL SITIO
    =========================================================
-   Aquí guardamos la información de las tres líneas de negocio.
-   La gran ventaja de este sistema es que, en el futuro, para
-   agregar o quitar fotos, solo tendrás que editar estas listas.
+   Actualizamos las rutas de las imágenes para que coincidan
+   con los archivos existentes en las carpetas.
 */
 const businessLines = {
   deteccion: {
     title: "Detección de fugas",
     images: [
-      "./images/deteccion/deteccion-01.jpeg",
-      "./images/deteccion/deteccion-02.jpeg",
-      "./images/deteccion/deteccion-03.jpeg",
+      "./images/deteccion/detec-a.jpeg",
+      "./images/deteccion/detec-b.jpeg",
+      "./images/deteccion/detec-c.jpeg",
     ],
   },
 
@@ -21,19 +20,15 @@ const businessLines = {
       "./images/arquitectura/arq-a.jpeg",
       "./images/arquitectura/arq-b.jpeg",
       "./images/arquitectura/arq-c.jpeg",
-      "./images/arquitectura/arq-d.jpeg",
-      "./images/arquitectura/arq-e.jpeg",
-      "./images/arquitectura/arq-f.jpeg",
-      "./images/arquitectura/arq-g.jpeg",
     ],
   },
 
   construccion: {
     title: "Construcción",
     images: [
-      "./images/construccion/construccion-01.jpg",
-      "./images/construccion/construccion-02.jpg",
-      "./images/construccion/construccion-03.jpg",
+      "./images/construccion/const-a.jpeg",
+      "./images/construccion/const-b.jpeg",
+      "./images/construccion/const-c.jpeg",
     ],
   },
 };
@@ -41,78 +36,30 @@ const businessLines = {
 /* =========================================================
    FUNCIÓN: crear tarjeta de imagen
    =========================================================
-   Esta función recibe:
-   - la ruta de una imagen
-   - el título de la línea de negocio
-   - el número de orden
-
-   Y devuelve una tarjeta HTML lista para insertarse en el tren.
+   Restauramos la función original.
 */
 function createRailCard(imagePath, businessTitle, index) {
-  /*
-    Creamos el contenedor principal de la tarjeta.
-    Esta tarjeta usará las clases que ya definimos en CSS.
-  */
   const card = document.createElement("article");
   card.className = "rail-card";
 
-  /*
-    Creamos el contenedor de la imagen.
-    Esto ayuda a mantener la proporción visual de cada tarjeta.
-  */
   const imageWrap = document.createElement("div");
   imageWrap.className = "rail-card-image";
 
-  /*
-    Creamos la imagen real.
-    - src: ruta del archivo
-    - alt: texto alternativo descriptivo
-  */
   const image = document.createElement("img");
   image.src = imagePath;
   image.alt = `${businessTitle} fotografía ${index + 1}`;
-
-  /*
-    Si una imagen no existe o está mal escrita,
-    evitamos que quede rota visualmente.
-    En ese caso, la escondemos y cambiamos el fondo.
-  */
-  image.addEventListener("error", () => {
-    image.style.display = "none";
-    imageWrap.style.background =
-      "linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))";
-  });
-
-  /*
-    Agregamos la imagen dentro de su contenedor.
-  */
   imageWrap.appendChild(image);
 
-  /*
-    Creamos el pie de la tarjeta.
-    Aquí podemos poner texto breve para dar orden visual.
-  */
   const footer = document.createElement("div");
   footer.className = "rail-card-footer";
 
-  /*
-    Texto descriptivo simple.
-    Esto sirve para que cada imagen tenga contexto visual.
-  */
   const footerText = document.createElement("p");
   footerText.textContent = `${businessTitle} · Imagen ${index + 1}`;
-
   footer.appendChild(footerText);
 
-  /*
-    Armamos la tarjeta completa.
-  */
   card.appendChild(imageWrap);
   card.appendChild(footer);
 
-  /*
-    Devolvemos la tarjeta ya construida.
-  */
   return card;
 }
 
@@ -161,8 +108,8 @@ function renderImageRail(railName) {
     Recorremos todas las imágenes de esa línea de negocio
     y vamos creando una tarjeta por cada una.
   */
-  businessData.images.forEach((imagePath, index) => {
-    const card = createRailCard(imagePath, businessData.title, index);
+  businessData.images.forEach((imageData, index) => {
+    const card = createRailCard(imageData, businessData.title, index);
     railContainer.appendChild(card);
   });
 }
